@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APS Windows</title>
+    <meta name="description" content="Les logiciels essentiels pour Windows, expliqués simplement, avec un lien direct vers le site officiel de chaque éditeur.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Barre de lecture : la page « s'installe » au fil du défilement -->
+    <div class="readbar" aria-hidden="true"><span></span></div>
+
+    <header class="topbar">
+        <a href="#accueil" class="logo">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="9" height="9" rx="1.5" />
+                <rect x="13" y="2" width="9" height="9" rx="1.5" />
+                <rect x="2" y="13" width="9" height="9" rx="1.5" />
+                <rect x="13" y="13" width="9" height="9" rx="1.5" class="logo-last" />
+            </svg>
+            APS Windows
+        </a>
+        <nav aria-label="Navigation principale">
+            <ul>
+                <li><a href="#logiciels">Logiciels</a></li>
+                <li><a href="#installer">Installer sans risque</a></li>
+                <li><a href="apropos.html">Le créateur</a></li>
+                <li><a href="#inscription" class="nav-cta">S'inscrire</a></li>
+            </ul>
+        </nav>
+        <p class="readpct" aria-hidden="true">Page lue à <b>0</b> %</p>
+    </header>
+
+    <main>
+        <!-- Accueil -->
+        <section id="accueil" class="hero">
+            <div class="hero-text">
+                <h1>
+                    <span class="line"><span>Le kit essentiel</span></span>
+                    <span class="line"><span>de votre PC,</span></span>
+                    <span class="line"><span>en version officielle.</span></span>
+                </h1>
+                <p class="lead"><span class="app-count">34</span> logiciels pour bien démarrer sous Windows, dont une
+                    majorité d'open source, expliqués simplement, avec un lien direct vers le site de chaque éditeur.</p>
+                <a href="#logiciels" class="btn">Voir les logiciels</a>
+            </div>
+
+            <div class="setup" aria-label="Aperçu animé de l'installation du kit">
+                <div class="setup-bar">
+                    <span>Installation du kit</span>
+                    <span class="setup-ctrl" aria-hidden="true"><i></i><i></i><i></i></span>
+                </div>
+                <ul class="setup-list"></ul>
+                <div class="setup-foot">
+                    <p class="setup-status" aria-live="polite">Préparation…</p>
+                    <button type="button" class="setup-replay">Rejouer</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Catalogue -->
+        <section id="logiciels" class="catalog">
+            <div class="section-head">
+                <h2>Les logiciels</h2>
+                <p>Choisissez un logiciel pour lire à quoi il sert et le télécharger.</p>
+            </div>
+            <div class="filter-bar">
+                <div class="filters" role="group" aria-label="Filtrer par catégorie"></div>
+                <button type="button" class="oss-toggle" aria-pressed="false">
+                    <span class="switch" aria-hidden="true"></span>
+                    Open source uniquement <span class="chip-count oss-count"></span>
+                </button>
+            </div>
+            <div class="grid"></div>
+        </section>
+
+        <!-- Étapes -->
+        <section id="installer" class="steps">
+            <div class="section-head">
+                <h2>Installer sans risque</h2>
+                <p>Trois réflexes qui évitent les virus et les barres d'outils indésirables.</p>
+            </div>
+            <ol class="step-list">
+                <li>
+                    <span class="step-dot" aria-hidden="true"></span>
+                    <h3>Choisir le bon logiciel</h3>
+                    <p>Lisez la fiche pour vérifier qu'il fait ce dont vous avez besoin, et s'il est gratuit ou payant.</p>
+                </li>
+                <li>
+                    <span class="step-dot" aria-hidden="true"></span>
+                    <h3>Télécharger chez l'éditeur</h3>
+                    <p>Utilisez le lien de la fiche. Il mène au site officiel, dont l'adresse est affichée sous le bouton.</p>
+                </li>
+                <li>
+                    <span class="step-dot" aria-hidden="true"></span>
+                    <h3>Installer avec attention</h3>
+                    <p>Lisez chaque écran de l'installateur et décochez les logiciels proposés en plus.</p>
+                </li>
+            </ol>
+        </section>
+
+        <!-- Inscription -->
+        <section id="inscription" class="signup">
+            <div class="signup-text">
+                <h2>Restez à jour</h2>
+                <p>Recevez un message quand un logiciel est ajouté au kit ou qu'une fiche change.</p>
+            </div>
+            <form class="signup-form" novalidate>
+                <div class="field">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" id="prenom" name="prenom" autocomplete="given-name" required>
+                </div>
+                <div class="field">
+                    <label for="nom">Nom</label>
+                    <input type="text" id="nom" name="nom" autocomplete="family-name" required>
+                </div>
+                <div class="field field-wide">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                    <p class="field-error" id="email-error"></p>
+                </div>
+                <button type="submit" class="btn btn-submit"><span>M'inscrire</span></button>
+                <div class="signup-done" hidden>
+                    <svg viewBox="0 0 52 52" aria-hidden="true">
+                        <circle cx="26" cy="26" r="24" />
+                        <path d="M15 27l7 7 15-16" />
+                    </svg>
+                    <p></p>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>APS Windows, créé par <a href="apropos.html">Achille Hounmonto</a> à Cotonou. Chaque lien de téléchargement
+            mène au site officiel de l'éditeur du logiciel.</p>
+    </footer>
+
+    <!-- Fiche détaillée d'un logiciel -->
+    <dialog class="drawer" aria-labelledby="drawer-title">
+        <div class="drawer-panel">
+            <button type="button" class="drawer-close" aria-label="Fermer la fiche">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+            <div class="drawer-body">
+                <div class="drawer-head">
+                    <span class="tile tile-lg"></span>
+                    <div>
+                        <p class="drawer-cat"></p>
+                        <h2 id="drawer-title"></h2>
+                    </div>
+                </div>
+                <p class="drawer-desc"></p>
+                <ul class="drawer-features"></ul>
+                <p class="drawer-licence"></p>
+                <a class="dl" target="_blank" rel="noopener noreferrer">
+                    <span class="dl-fill" aria-hidden="true"></span>
+                    <span class="dl-label">Télécharger sur le site officiel</span>
+                </a>
+                <p class="drawer-domain"></p>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="data/apps.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

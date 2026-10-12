@@ -1,0 +1,23 @@
+# Système
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Éditeurs
+.vscode/
+.idea/
+
+# Réglages locaux de Claude Code
+.claude/settings.local.json
+
+# Installateurs : on renvoie vers les sites officiels, on ne les héberge pas
+*.exe
+*.msi
+*.iso
+*.daa
+*.rar
+*.7z
+*.zip
+
+.vercel
+.env*.local

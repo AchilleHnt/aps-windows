@@ -1,0 +1,371 @@
+/* ==========================================================
+   Page « Le créateur » (s'appuie sur style.css)
+   ========================================================== */
+
+.topbar nav a[aria-current="page"] {
+    background: rgb(23 33 59 / .07);
+}
+
+/* ---------- Présentation ---------- */
+.about-hero {
+    min-height: calc(100vh - 64px);
+}
+
+.tile-xl {
+    width: 112px;
+    height: 112px;
+    margin-bottom: 28px;
+    font-size: 2.6rem;
+    border-radius: 22px;
+}
+
+/* La tuile du créateur : couleur « signal », arrive en tournant */
+.me-tile {
+    --tc: var(--ink);
+    --tb: var(--signal);
+    animation: tile-in .9s var(--ease-out) backwards;
+}
+
+@keyframes tile-in {
+    from {
+        opacity: 0;
+        transform: rotate(-90deg) scale(.4);
+    }
+}
+
+.about-hero h1 .line:nth-child(2)>span {
+    animation-delay: .12s;
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    opacity: 0;
+    animation: fade-in .8s .7s var(--ease-out) forwards;
+}
+
+.btn-ghost {
+    color: var(--ink);
+    background: var(--panel);
+    box-shadow: inset 0 0 0 1.5px var(--line);
+}
+
+.btn-ghost:hover {
+    box-shadow: inset 0 0 0 1.5px var(--ink);
+}
+
+/* Fenêtre « Propriétés » */
+.props-list {
+    margin: 0;
+    padding: 10px 0;
+}
+
+.props-list>div {
+    display: grid;
+    grid-template-columns: 9em 1fr;
+    gap: 16px;
+    padding: 10px 20px;
+    border-bottom: 1px solid var(--paper);
+}
+
+.props-list>div:last-child {
+    border-bottom: 0;
+}
+
+.props-list dt {
+    font-size: .88rem;
+    color: var(--muted);
+}
+
+.props-list dd {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* Le texte de chaque valeur s'écrit, piloté par apropos.js */
+.props-list dd.typing::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    margin-left: 2px;
+    vertical-align: -2px;
+    background: var(--cobalt);
+    animation: caret .8s steps(1) infinite;
+}
+
+@keyframes caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ---------- Résultat : la course 227 s / 41 s ---------- */
+.impact,
+.path,
+.skills,
+.projects {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: clamp(64px, 10vh, 120px) var(--gutter);
+}
+
+.impact .section-head p {
+    max-width: 34em;
+}
+
+.race {
+    display: grid;
+    gap: 18px;
+    padding: clamp(22px, 4vw, 36px);
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+}
+
+.race-row {
+    display: grid;
+    grid-template-columns: 4.5em 1fr 4.5em;
+    align-items: center;
+    gap: 16px;
+}
+
+.race-label {
+    font-weight: 650;
+}
+
+.race-track {
+    height: 18px;
+    background: var(--paper);
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.race-bar {
+    display: block;
+    height: 100%;
+    width: calc(var(--w, 0) * 1%);
+    background: var(--muted);
+    border-radius: 9px;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+.race-after .race-bar {
+    background: var(--signal);
+}
+
+.race.run .race-bar {
+    transform: scaleX(1);
+    transition: transform 2.2s linear;
+}
+
+/* « Après » termine bien plus tôt : sa durée est proportionnelle à 41/227 */
+.race.run .race-after .race-bar {
+    transition-duration: .4s;
+    transition-timing-function: var(--ease-out);
+}
+
+.race-time {
+    font-size: 1.15rem;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+.race-time b {
+    font-weight: 750;
+}
+
+/* ---------- Parcours ---------- */
+.timeline {
+    position: relative;
+    display: grid;
+    gap: 40px;
+    margin: 0;
+    padding: 0 0 0 56px;
+    list-style: none;
+}
+
+.timeline::before,
+.timeline::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    bottom: 8px;
+    left: 9px;
+    width: 3px;
+    border-radius: 2px;
+    background: var(--line);
+}
+
+.timeline::after {
+    background: var(--signal);
+    transform-origin: top;
+    transform: scaleY(var(--rail, 0));
+}
+
+.timeline li {
+    position: relative;
+    max-width: 40em;
+}
+
+.timeline li::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: -56px;
+    top: 2px;
+    width: 21px;
+    height: 21px;
+    background: var(--paper);
+    border: 3px solid var(--line);
+    border-radius: 50%;
+    transition: background-color .4s, border-color .4s, transform .5s var(--ease-out);
+}
+
+.timeline li.lit::before {
+    background: var(--signal);
+    border-color: var(--signal);
+    transform: scale(1.2);
+}
+
+.timeline li>* {
+    transition: opacity .5s, transform .6s var(--ease-out);
+}
+
+.timeline.armed li:not(.lit)>* {
+    opacity: .35;
+}
+
+.tl-date {
+    display: block;
+    margin-bottom: 4px;
+    font-size: .9rem;
+    font-weight: 650;
+    color: var(--muted);
+}
+
+.timeline h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.timeline p {
+    margin-top: 6px;
+    color: var(--muted);
+}
+
+/* ---------- Compétences ---------- */
+.skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+}
+
+.skill-group {
+    padding: 22px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: border-color .3s, opacity .3s;
+}
+
+.skill-group h3 {
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--tc);
+}
+
+.skill-group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.skill-group li {
+    padding: 5px 12px;
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--tc);
+    background: var(--tb);
+    border-radius: 8px;
+    transition: transform .35s var(--ease-out);
+}
+
+/* Le groupe survolé passe devant, les autres s'estompent */
+.skill-grid:has(.skill-group:hover) .skill-group:not(:hover) {
+    opacity: .45;
+}
+
+.skill-group:hover {
+    border-color: var(--tc);
+}
+
+.skill-group:hover li {
+    transform: translateY(-3px);
+}
+
+.skill-group:hover li:nth-child(2n) {
+    transform: translateY(-5px);
+}
+
+.langs {
+    margin-top: 20px;
+    color: var(--muted);
+}
+
+/* ---------- Projets ---------- */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+}
+
+.project {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    text-decoration: none;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    transition: border-color .25s, transform .35s var(--ease-out);
+}
+
+.project:hover {
+    border-color: var(--tc);
+    transform: translateY(-3px);
+}
+
+.project .tile {
+    transition: transform .45s var(--ease-out);
+}
+
+.project:hover .tile {
+    transform: rotate(-6deg) scale(1.06);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+    .props-list>div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .race-row {
+        grid-template-columns: 3.6em 1fr 3.6em;
+        gap: 10px;
+    }
+
+    .tile-xl {
+        width: 88px;
+        height: 88px;
+        font-size: 2rem;
+    }
+}

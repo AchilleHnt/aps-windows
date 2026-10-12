@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Back office - APS Windows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body class="admin">
+    <header class="topbar admin-bar">
+        <a href="../index.html" class="logo" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="2" y="2" width="9" height="9" rx="1.5" />
+                <rect x="13" y="2" width="9" height="9" rx="1.5" />
+                <rect x="2" y="13" width="9" height="9" rx="1.5" />
+                <rect x="13" y="13" width="9" height="9" rx="1.5" class="logo-last" />
+            </svg>
+            APS Windows
+        </a>
+        <span class="admin-label">Back office</span>
+        <p class="save-state" aria-live="polite"></p>
+        <a href="../index.html" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">Voir le site</a>
+        <button type="button" class="btn btn-sm save-btn">Enregistrer le fichier</button>
+    </header>
+
+    <main class="admin-main">
+        <!-- Liste des logiciels -->
+        <aside class="list-pane" aria-label="Logiciels du catalogue">
+            <div class="list-head">
+                <h1><span class="list-count"></span> logiciels</h1>
+                <button type="button" class="btn btn-sm new-btn">Ajouter un logiciel</button>
+            </div>
+            <label class="search">
+                <span class="visually-hidden">Rechercher un logiciel</span>
+                <input type="search" placeholder="Rechercher par nom ou catégorie" autocomplete="off">
+            </label>
+            <ol class="app-list"></ol>
+            <p class="list-help">L'ordre de la liste est celui du site. Utilisez les flèches pour déplacer un logiciel.</p>
+        </aside>
+
+        <!-- Formulaire -->
+        <section class="editor" aria-labelledby="editor-title">
+            <div class="editor-head">
+                <h2 id="editor-title">Choisissez un logiciel</h2>
+                <p class="editor-sub">Sélectionnez un logiciel dans la liste ou ajoutez-en un nouveau.</p>
+            </div>
+
+            <form class="app-form" novalidate hidden>
+                <div class="field">
+                    <label for="f-name">Nom</label>
+                    <input id="f-name" name="name" type="text" required maxlength="60" placeholder="7-Zip">
+                    <p class="error" data-for="name"></p>
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label for="f-abbr">Lettres de la tuile</label>
+                        <div class="abbr-wrap">
+                            <input id="f-abbr" name="abbr" type="text" required maxlength="2" placeholder="7z">
+                            <button type="button" class="link-btn suggest-abbr">Suggérer</button>
+                        </div>
+                        <p class="hint">Deux caractères, uniques dans le catalogue.</p>
+                        <p class="error" data-for="abbr"></p>
+                    </div>
+                    <div class="field">
+                        <label for="f-id">Identifiant</label>
+                        <input id="f-id" name="id" type="text" required maxlength="40" placeholder="7zip" spellcheck="false">
+                        <p class="hint">Minuscules, chiffres et tirets. Rempli à partir du nom.</p>
+                        <p class="error" data-for="id"></p>
+                    </div>
+                </div>
+
+                <div class="field-row">
+                    <div class="field">
+                        <label for="f-cat">Catégorie</label>
+                        <select id="f-cat" name="cat"></select>
+                    </div>
+                    <div class="field checks">
+                        <label class="check"><input type="checkbox" name="oss"> Open source</label>
+                        <label class="check"><input type="checkbox" name="hero"> Dans l'animation de l'accueil</label>
+                        <p class="error" data-for="hero"></p>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label for="f-role">Rôle, en une phrase</label>
+                    <input id="f-role" name="role" type="text" required maxlength="60" placeholder="Compression gratuite, l'alternative à WinRAR">
+                    <p class="hint"><span class="role-count">0</span>/60 caractères. Affiché sur la carte.</p>
+                    <p class="error" data-for="role"></p>
+                </div>
+
+                <div class="field">
+                    <label for="f-desc">Description</label>
+                    <textarea id="f-desc" name="desc" rows="3" required placeholder="À quoi sert le logiciel, en deux phrases simples."></textarea>
+                    <p class="error" data-for="desc"></p>
+                </div>
+
+                <fieldset class="field features">
+                    <legend>Fonctions clés</legend>
+                    <ol class="feature-list"></ol>
+                    <button type="button" class="link-btn add-feature">Ajouter une fonction</button>
+                    <p class="error" data-for="features"></p>
+                </fieldset>
+
+                <div class="field">
+                    <label for="f-licence">Licence et prix</label>
+                    <input id="f-licence" name="licence" type="text" required placeholder="Gratuit et open source (licence GNU GPL).">
+                    <p class="error" data-for="licence"></p>
+                </div>
+
+                <div class="field">
+                    <label for="f-url">Lien de téléchargement officiel</label>
+                    <input id="f-url" name="url" type="url" required placeholder="https://www.7-zip.org/" spellcheck="false">
+                    <p class="hint url-hint">Uniquement le site de l'éditeur, en https.</p>
+                    <p class="error" data-for="url"></p>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn apply-btn">Valider la fiche</button>
+                    <button type="button" class="btn btn-ghost reset-btn">Annuler les modifications</button>
+                    <button type="button" class="btn btn-danger delete-btn">Supprimer</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Aperçu en direct -->
+        <aside class="preview-pane" aria-label="Aperçu">
+            <h2 class="preview-title">Aperçu</h2>
+            <div class="preview" hidden>
+                <div class="preview-card"></div>
+                <div class="preview-sheet"></div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="../data/apps.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
